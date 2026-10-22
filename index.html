@@ -4,117 +4,489 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#970018">
-  <title>Teh Dandang | Sales Mobile</title>
+  <title>Teh Dandang | Sales Monitoring</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
   <div class="app-shell">
-    <header class="topbar">
-      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Buka menu">☰</button>
-      <div class="brand-mark">TD</div>
-      <div class="brand-copy"><strong>TEH DANDANG</strong><small>SALES MONITORING</small></div>
-      <button class="avatar" id="profileBtn" aria-label="Profil">EP</button>
-    </header>
+    <!-- Sidebar / Off-canvas Drawer -->
+    <aside class="drawer" id="drawer" aria-label="Menu Navigasi">
+      <div class="drawer-head">
+        <div class="brand-group">
+          <div class="brand-mark">TD</div>
+          <div class="brand-copy">
+            <strong>TEH DANDANG</strong>
+            <small>SALES MONITORING</small>
+          </div>
+        </div>
+        <button class="icon-btn close-btn" id="closeDrawer" aria-label="Tutup menu">×</button>
+      </div>
 
-    <aside class="drawer" id="drawer">
-      <div class="drawer-head"><div class="brand-mark">TD</div><div><strong>TEH DANDANG</strong><small>Sales Mobile</small></div><button class="icon-btn" id="closeDrawer">×</button></div>
-      <div class="user-card"><div class="avatar large">EP</div><div><strong>Eko Prasetyo</strong><small>Sales Representative</small><span class="online"><i></i> Online</span></div></div>
+      <div class="user-card">
+        <div class="avatar large">EP</div>
+        <div class="user-meta">
+          <strong>Eko Prasetyo</strong>
+          <small>Sales Representative</small>
+          <span class="online"><i></i> Online · Solo Raya</span>
+        </div>
+      </div>
+
       <nav class="drawer-nav">
-        <button data-page="home">⌂ <span>Dashboard</span></button>
-        <button data-page="schedule">▦ <span>Jadwal Kunjungan</span></button>
-        <button data-page="outlets">⌖ <span>Daftar Outlet</span></button>
-        <button data-page="visit">✓ <span>Check-in & Kunjungan</span></button>
-        <button data-page="results">▤ <span>Hasil Kunjungan</span></button>
+        <button class="active" data-page="home">
+          <span class="nav-icon">⌂</span>
+          <span class="nav-text">Dashboard</span>
+        </button>
+        <button data-page="schedule">
+          <span class="nav-icon">▦</span>
+          <span class="nav-text">Jadwal Kunjungan</span>
+        </button>
+        <button data-page="outlets">
+          <span class="nav-icon">⌖</span>
+          <span class="nav-text">Daftar Outlet</span>
+        </button>
+        <button data-page="visit">
+          <span class="nav-icon">✓</span>
+          <span class="nav-text">Check-in & Kunjungan</span>
+        </button>
+        <button data-page="results">
+          <span class="nav-icon">▤</span>
+          <span class="nav-text">Hasil Kunjungan</span>
+        </button>
       </nav>
-      <div class="drawer-foot">Versi mockup · Data simulasi</div>
+
+      <div class="drawer-foot">
+        <div class="foot-badge">Area Solo Raya</div>
+        <p>Versi Mockup 2.0 · Data Simulasi</p>
+      </div>
     </aside>
+
+    <!-- Scrim overlay (Mobile only) -->
     <div class="scrim" id="scrim"></div>
 
-    <main class="main-content">
-      <section class="page active" id="page-home">
-        <div class="greeting-row"><div><p class="eyebrow">RABU, 22 OKTOBER 2026</p><h1>Halo, Eko! 👋</h1><p class="muted">Siap mencapai target hari ini?</p></div><span class="pill pill-green">● Aktif</span></div>
-        <div class="hero-card">
-          <div class="hero-top"><span>Target penjualan hari ini</span><span class="hero-icon">↗</span></div>
-          <div class="hero-number">Rp 8.450.000</div>
-          <div class="hero-sub">Realisasi <strong>Rp 5.920.000</strong> <span>70,1%</span></div>
-          <div class="progress"><span style="width:70.1%"></span></div>
-          <div class="hero-bottom"><span>Target: Rp 8.450.000</span><span>Sisa Rp 2.530.000</span></div>
+    <!-- Main Application Wrapper -->
+    <div class="main-wrapper">
+      <header class="topbar">
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Buka menu">☰</button>
+        
+        <div class="topbar-brand">
+          <div class="brand-mark">TD</div>
+          <div class="brand-copy">
+            <strong>TEH DANDANG</strong>
+            <small>SALES MONITORING</small>
+          </div>
         </div>
-        <div class="section-heading"><h2>Aktivitas hari ini</h2><button class="text-btn" data-goto="schedule">Lihat jadwal</button></div>
-        <div class="stats-grid">
-          <div class="stat-card"><span class="stat-icon purple">⌖</span><strong>8</strong><small>Outlet terjadwal</small></div>
-          <div class="stat-card"><span class="stat-icon green">✓</span><strong>5</strong><small>Selesai dikunjungi</small></div>
-          <div class="stat-card"><span class="stat-icon orange">◷</span><strong>2</strong><small>Belum dikunjungi</small></div>
-          <div class="stat-card"><span class="stat-icon red">!</span><strong>1</strong><small>Perlu tindak lanjut</small></div>
+
+        <div class="topbar-desktop-context">
+          <div class="context-pill">
+            <span class="status-indicator"></span>
+            <span>Area Operasional: <strong>Solo Raya & Sekitarnya</strong></span>
+          </div>
+          <span class="topbar-date">Rabu, 22 Oktober 2026</span>
         </div>
-        <div class="section-heading"><h2>Kunjungan berikutnya</h2><button class="text-btn" data-goto="outlets">Semua outlet</button></div>
-        <article class="outlet-card">
-          <div class="outlet-initial">GS</div><div class="outlet-info"><div class="card-title-row"><strong>Grosir Sentosa</strong><span class="pill pill-orange">Menunggu</span></div><p>Solo Raya · Kota Surakarta</p><small>Jl. Slamet Riyadi No. 28</small><div class="mini-meta"><span>◷ 13.30 – 14.00</span><span>⌖ 1,2 km</span></div></div>
-        </article>
-        <button class="primary-btn full" data-goto="schedule">Lihat rute & jadwal <span>→</span></button>
-        <div class="section-heading"><h2>Ringkasan performa</h2><span class="muted tiny">Minggu ini</span></div>
-        <div class="performance-card"><div><small>Total penjualan</small><strong>Rp 28,6 jt</strong><span class="trend">↑ 12,4% dari minggu lalu</span></div><div class="mini-bars"><i style="height:38%"></i><i style="height:56%"></i><i style="height:46%"></i><i style="height:72%"></i><i style="height:61%"></i><i style="height:90%"></i><i style="height:76%"></i></div><div class="bar-labels"><span>Sen</span><span>Sel</span><span>Rab</span><span>Kam</span><span>Jum</span><span>Sab</span><span>Min</span></div></div>
-      </section>
 
-      <section class="page" id="page-schedule">
-        <div class="page-title"><div><p class="eyebrow">RENCANA KERJA</p><h1>Jadwal Kunjungan</h1><p class="muted">Atur prioritas outlet untuk hari ini.</p></div><span class="date-chip">22 Okt</span></div>
-        <div class="date-strip"><button class="date-item"><small>Sen</small><strong>20</strong></button><button class="date-item"><small>Sel</small><strong>21</strong></button><button class="date-item selected"><small>Rab</small><strong>22</strong></button><button class="date-item"><small>Kam</small><strong>23</strong></button><button class="date-item"><small>Jum</small><strong>24</strong></button></div>
-        <div class="filter-row"><button class="filter-chip selected" data-filter="Semua">Semua <b>8</b></button><button class="filter-chip" data-filter="Menunggu">Menunggu <b>2</b></button><button class="filter-chip" data-filter="Selesai">Selesai <b>5</b></button><button class="filter-chip" data-filter="Tindak lanjut">Tindak lanjut <b>1</b></button></div>
-        <div class="timeline" id="scheduleList"></div>
-      </section>
-
-      <section class="page" id="page-outlets">
-        <div class="page-title"><div><p class="eyebrow">CUSTOMER MANAGEMENT</p><h1>Daftar Outlet</h1><p class="muted">Temukan outlet dan mulai kunjungan.</p></div><span class="count-badge">132</span></div>
-        <label class="search-box"><span>⌕</span><input id="outletSearch" type="search" placeholder="Cari nama outlet atau area..."><kbd>⌘ K</kbd></label>
-        <div class="filter-row outlet-filters"><button class="filter-chip selected" data-outlet-filter="Semua">Semua</button><button class="filter-chip" data-outlet-filter="Prioritas">Prioritas</button><button class="filter-chip" data-outlet-filter="Belum dikunjungi">Belum dikunjungi</button></div>
-        <div id="outletList" class="outlet-list"></div>
-      </section>
-
-      <section class="page" id="page-visit">
-        <div class="page-title"><div><p class="eyebrow">AKTIVITAS LAPANGAN</p><h1>Check-in Outlet</h1><p class="muted">Catat kunjungan secara langsung.</p></div><span class="pill pill-green">GPS simulasi</span></div>
-        <div class="visit-outlet-select"><label for="visitOutlet">Pilih outlet</label><select id="visitOutlet"><option value="Grosir Sentosa">Grosir Sentosa</option><option value="Toko Berkah Jaya">Toko Berkah Jaya</option><option value="Sumber Rejeki Mart">Sumber Rejeki Mart</option><option value="Toko Maju Lancar">Toko Maju Lancar</option></select></div>
-        <div class="map-card"><div class="map-visual"><div class="map-road road-a"></div><div class="map-road road-b"></div><div class="map-road road-c"></div><div class="map-block block-a"></div><div class="map-block block-b"></div><div class="map-block block-c"></div><div class="map-pin">●<span></span></div><div class="map-you">➤</div><span class="map-label">KOTA SURAKARTA</span></div><div class="map-caption"><span class="location-dot"></span><div><strong id="mapOutletName">Grosir Sentosa</strong><small>Lokasi outlet terdeteksi (simulasi)</small></div><button class="text-btn" id="refreshGps">Perbarui</button></div></div>
-        <div class="location-status"><span class="status-check">✓</span><div><strong>Lokasi siap digunakan</strong><small>Akurasi simulasi ± 15 meter</small></div><span class="pill pill-green">Siap</span></div>
-        <div class="visit-steps"><div class="step active"><span>1</span><small>Check-in</small></div><i></i><div class="step"><span>2</span><small>Aktivitas</small></div><i></i><div class="step"><span>3</span><small>Check-out</small></div></div>
-        <div class="info-card"><div class="info-row"><span>Jadwal</span><strong>13.30 – 14.00 WIB</strong></div><div class="info-row"><span>Alamat</span><strong>Jl. Slamet Riyadi No. 28, Surakarta</strong></div><div class="info-row"><span>Status kunjungan</span><strong id="visitStatus" class="status-text">Belum check-in</strong></div></div>
-        <button class="primary-btn full" id="checkinBtn">⌖ &nbsp; Check-in sekarang</button>
-        <p class="fine-print">Mockup ini menggunakan lokasi dan waktu simulasi. Tidak mengakses GPS perangkat.</p>
-      </section>
-
-      <section class="page" id="page-results">
-        <div class="page-title"><div><p class="eyebrow">PELAPORAN SALES</p><h1>Hasil Kunjungan</h1><p class="muted">Lengkapi laporan setelah bertemu outlet.</p></div><span class="pill pill-orange" id="resultState">Draft</span></div>
-        <div class="visit-summary"><div class="outlet-initial">GS</div><div><strong id="resultOutletName">Grosir Sentosa</strong><small>22 Okt 2026 · Kunjungan #VIS-0822</small><span class="pill pill-green">Check-in tercatat</span></div></div>
-        <form id="resultForm">
-          <div class="form-section"><div class="form-section-title"><span>01</span><div><strong>Informasi kunjungan</strong><small>Konfirmasi aktivitas outlet</small></div></div>
-            <label class="field-label" for="visitType">Jenis kunjungan</label><select id="visitType" required><option>Penjualan rutin</option><option>Penagihan</option><option>Perkenalan produk</option><option>Penanganan keluhan</option></select>
-            <label class="field-label" for="contactName">Nama PIC outlet</label><input id="contactName" placeholder="Contoh: Bapak Andi" required>
-            <label class="field-label" for="visitOutcome">Hasil kunjungan</label><select id="visitOutcome" required><option value="">Pilih hasil kunjungan</option><option>Order berhasil dibuat</option><option>Follow-up diperlukan</option><option>Outlet tutup</option><option>Tidak ada order</option></select>
+        <div class="topbar-actions">
+          <button class="avatar" id="profileBtn" aria-label="Profil Sales">EP</button>
+          <div class="user-chip-desktop">
+            <strong>Eko Prasetyo</strong>
+            <small>Sales Field Rep</small>
           </div>
-          <div class="form-section"><div class="form-section-title"><span>02</span><div><strong>Detail penjualan</strong><small>Isi nilai order jika ada</small></div></div>
-            <label class="field-label" for="orderValue">Nilai order (Rp)</label><input id="orderValue" inputmode="numeric" placeholder="0">
-            <label class="field-label" for="orderNumber">Nomor order (opsional)</label><input id="orderNumber" placeholder="Contoh: SO-2026-0012">
-            <div class="order-note"><span>ⓘ</span> Nilai penjualan akan masuk ke ringkasan performa simulasi.</div>
-          </div>
-          <div class="form-section"><div class="form-section-title"><span>03</span><div><strong>Catatan & tindak lanjut</strong><small>Dokumentasikan kebutuhan outlet</small></div></div>
-            <label class="field-label" for="notes">Catatan kunjungan</label><textarea id="notes" rows="3" placeholder="Tuliskan hasil diskusi, kebutuhan, atau kendala..."></textarea>
-            <label class="field-label" for="followup">Tindak lanjut</label><select id="followup"><option>Tidak ada</option><option>Hubungi kembali</option><option>Kirim katalog / promo</option><option>Koordinasi dengan ASM</option><option>Jadwalkan kunjungan ulang</option></select>
-          </div>
-          <button class="primary-btn full" type="submit">✓ &nbsp; Simpan hasil kunjungan</button>
-          <button class="secondary-btn full" type="button" id="saveDraft">Simpan sebagai draft</button>
-        </form>
-        <p class="fine-print">Semua data hanya tersimpan sementara di tampilan demo ini.</p>
-      </section>
-    </main>
+        </div>
+      </header>
 
-    <nav class="bottom-nav">
-      <button class="nav-item active" data-page="home"><span>⌂</span><small>Home</small></button>
-      <button class="nav-item" data-page="schedule"><span>▦</span><small>Jadwal</small></button>
-      <button class="nav-item center-nav" data-page="visit"><span>⌖</span><small>Check-in</small></button>
-      <button class="nav-item" data-page="outlets"><span>♙</span><small>Outlet</small></button>
-      <button class="nav-item" data-page="results"><span>▤</span><small>Laporan</small></button>
-    </nav>
+      <main class="main-content">
+        <!-- 1. DASHBOARD -->
+        <section class="page active" id="page-home">
+          <div class="greeting-row">
+            <div>
+              <p class="eyebrow">RABU, 22 OKTOBER 2026</p>
+              <h1>Halo, Eko! 👋</h1>
+              <p class="muted">Siap mencapai target penjualan hari ini?</p>
+            </div>
+            <span class="pill pill-green">● Shift Aktif</span>
+          </div>
+
+          <!-- Top Grid: Target Hero + Performance Weekly -->
+          <div class="dashboard-hero-grid">
+            <div class="hero-card">
+              <div class="hero-top">
+                <span>Target penjualan hari ini</span>
+                <span class="hero-icon">↗</span>
+              </div>
+              <div class="hero-number">Rp 8.450.000</div>
+              <div class="hero-sub">
+                Realisasi <strong>Rp 5.920.000</strong>
+                <span class="hero-badge">70,1%</span>
+              </div>
+              <div class="progress" role="progressbar" aria-valuenow="70.1" aria-valuemin="0" aria-valuemax="100">
+                <span style="width:70.1%"></span>
+              </div>
+              <div class="hero-bottom">
+                <span>Target: Rp 8.450.000</span>
+                <span>Sisa Rp 2.530.000</span>
+              </div>
+            </div>
+
+            <div class="performance-card">
+              <div class="perf-header">
+                <div>
+                  <small>Ringkasan performa minggu ini</small>
+                  <strong>Rp 28,6 jt</strong>
+                </div>
+                <span class="trend">↑ 12,4% vs mgg lalu</span>
+              </div>
+              <div class="mini-bars">
+                <i style="height:38%" title="Sen: Rp 3,2 jt"></i>
+                <i style="height:56%" title="Sel: Rp 4,8 jt"></i>
+                <i style="height:46%" title="Rab: Rp 3,9 jt"></i>
+                <i style="height:72%" title="Kam: Rp 6,1 jt"></i>
+                <i style="height:61%" title="Jum: Rp 5,2 jt"></i>
+                <i style="height:90%" title="Sab: Rp 7,6 jt"></i>
+                <i style="height:76%" title="Min: Rp 6,4 jt"></i>
+              </div>
+              <div class="bar-labels">
+                <span>Sen</span><span>Sel</span><span>Rab</span><span>Kam</span><span>Jum</span><span>Sab</span><span>Min</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: Aktivitas Hari Ini -->
+          <div class="section-heading">
+            <h2>Aktivitas hari ini</h2>
+            <button class="text-btn" data-goto="schedule">Lihat jadwal lengkap →</button>
+          </div>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span class="stat-icon purple">⌖</span>
+              <strong>8</strong>
+              <small>Outlet terjadwal</small>
+            </div>
+            <div class="stat-card">
+              <span class="stat-icon green">✓</span>
+              <strong>5</strong>
+              <small>Selesai dikunjungi</small>
+            </div>
+            <div class="stat-card">
+              <span class="stat-icon orange">◷</span>
+              <strong>2</strong>
+              <small>Belum dikunjungi</small>
+            </div>
+            <div class="stat-card">
+              <span class="stat-icon red">!</span>
+              <strong>1</strong>
+              <small>Perlu tindak lanjut</small>
+            </div>
+          </div>
+
+          <!-- Section: Kunjungan Berikutnya -->
+          <div class="section-heading">
+            <h2>Kunjungan berikutnya</h2>
+            <button class="text-btn" data-goto="outlets">Semua outlet →</button>
+          </div>
+          <div class="next-visit-row">
+            <article class="outlet-card highlight-card">
+              <div class="outlet-initial">GS</div>
+              <div class="outlet-info">
+                <div class="card-title-row">
+                  <strong>Grosir Sentosa</strong>
+                  <span class="pill pill-orange">Menunggu</span>
+                </div>
+                <p>Solo Raya · Kota Surakarta</p>
+                <small>Jl. Slamet Riyadi No. 28</small>
+                <div class="mini-meta">
+                  <span>◷ 13.30 – 14.00</span>
+                  <span>⌖ 1,2 km dari posisi</span>
+                </div>
+              </div>
+            </article>
+            <button class="primary-btn route-btn" data-goto="schedule">
+              Lihat rute & jadwal <span>→</span>
+            </button>
+          </div>
+        </section>
+
+        <!-- 2. JADWAL KUNJUNGAN -->
+        <section class="page" id="page-schedule">
+          <div class="page-title">
+            <div>
+              <p class="eyebrow">RENCANA KERJA</p>
+              <h1>Jadwal Kunjungan</h1>
+              <p class="muted">Atur prioritas rute dan outlet untuk hari ini.</p>
+            </div>
+            <span class="date-chip">22 Okt 2026</span>
+          </div>
+
+          <div class="schedule-controls-box">
+            <div class="date-strip">
+              <button class="date-item"><small>Sen</small><strong>20</strong></button>
+              <button class="date-item"><small>Sel</small><strong>21</strong></button>
+              <button class="date-item selected"><small>Rab</small><strong>22</strong></button>
+              <button class="date-item"><small>Kam</small><strong>23</strong></button>
+              <button class="date-item"><small>Jum</small><strong>24</strong></button>
+            </div>
+            <div class="filter-row">
+              <button class="filter-chip selected" data-filter="Semua">Semua <b>8</b></button>
+              <button class="filter-chip" data-filter="Menunggu">Menunggu <b>2</b></button>
+              <button class="filter-chip" data-filter="Selesai">Selesai <b>5</b></button>
+              <button class="filter-chip" data-filter="Tindak lanjut">Tindak lanjut <b>1</b></button>
+            </div>
+          </div>
+
+          <div class="timeline" id="scheduleList"></div>
+        </section>
+
+        <!-- 3. DAFTAR OUTLET -->
+        <section class="page" id="page-outlets">
+          <div class="page-title">
+            <div>
+              <p class="eyebrow">CUSTOMER MANAGEMENT</p>
+              <h1>Daftar Outlet</h1>
+              <p class="muted">Temukan outlet, cek status kunjungan, dan mulai check-in.</p>
+            </div>
+            <span class="count-badge">Total 132 Outlet</span>
+          </div>
+
+          <div class="outlet-toolbar">
+            <label class="search-box">
+              <span>⌕</span>
+              <input id="outletSearch" type="search" placeholder="Cari nama outlet, alamat, atau area...">
+              <kbd>⌘ K</kbd>
+            </label>
+            <div class="filter-row outlet-filters">
+              <button class="filter-chip selected" data-outlet-filter="Semua">Semua</button>
+              <button class="filter-chip" data-outlet-filter="Prioritas">Prioritas</button>
+              <button class="filter-chip" data-outlet-filter="Belum dikunjungi">Belum dikunjungi</button>
+            </div>
+          </div>
+
+          <div id="outletList" class="outlet-list"></div>
+        </section>
+
+        <!-- 4. CHECK-IN & KUNJUNGAN -->
+        <section class="page" id="page-visit">
+          <div class="page-title">
+            <div>
+              <p class="eyebrow">AKTIVITAS LAPANGAN</p>
+              <h1>Check-in Outlet</h1>
+              <p class="muted">Validasi GPS lokasi dan catat waktu kunjungan lapangan.</p>
+            </div>
+            <span class="pill pill-green">GPS Simulasi Aktif</span>
+          </div>
+
+          <div class="visit-grid">
+            <div class="visit-col-map">
+              <div class="visit-outlet-select">
+                <label for="visitOutlet">Pilih outlet target</label>
+                <select id="visitOutlet">
+                  <option value="Grosir Sentosa">Grosir Sentosa</option>
+                  <option value="Toko Berkah Jaya">Toko Berkah Jaya</option>
+                  <option value="Sumber Rejeki Mart">Sumber Rejeki Mart</option>
+                  <option value="Toko Maju Lancar">Toko Maju Lancar</option>
+                </select>
+              </div>
+
+              <div class="map-card">
+                <div class="map-visual">
+                  <div class="map-road road-a"></div>
+                  <div class="map-road road-b"></div>
+                  <div class="map-road road-c"></div>
+                  <div class="map-block block-a"></div>
+                  <div class="map-block block-b"></div>
+                  <div class="map-block block-c"></div>
+                  <div class="map-pin">●<span></span></div>
+                  <div class="map-you">➤</div>
+                  <span class="map-label">KOTA SURAKARTA</span>
+                </div>
+                <div class="map-caption">
+                  <span class="location-dot"></span>
+                  <div>
+                    <strong id="mapOutletName">Grosir Sentosa</strong>
+                    <small>Lokasi outlet terdeteksi di radius check-in</small>
+                  </div>
+                  <button class="text-btn" id="refreshGps">Perbarui GPS</button>
+                </div>
+              </div>
+
+              <div class="location-status">
+                <span class="status-check">✓</span>
+                <div>
+                  <strong>Lokasi siap digunakan</strong>
+                  <small>Radius akurasi simulasi ± 15 meter dari titik outlet</small>
+                </div>
+                <span class="pill pill-green">Valid</span>
+              </div>
+            </div>
+
+            <div class="visit-col-actions">
+              <div class="visit-steps">
+                <div class="step active"><span>1</span><small>Check-in</small></div>
+                <i></i>
+                <div class="step"><span>2</span><small>Aktivitas</small></div>
+                <i></i>
+                <div class="step"><span>3</span><small>Check-out</small></div>
+              </div>
+
+              <div class="info-card">
+                <div class="info-row">
+                  <span>Jadwal Visit</span>
+                  <strong>13.30 – 14.00 WIB</strong>
+                </div>
+                <div class="info-row">
+                  <span>Alamat Outlet</span>
+                  <strong>Jl. Slamet Riyadi No. 28, Surakarta</strong>
+                </div>
+                <div class="info-row">
+                  <span>Status Presensi</span>
+                  <strong id="visitStatus" class="status-text">Belum check-in</strong>
+                </div>
+              </div>
+
+              <button class="primary-btn full" id="checkinBtn">⌖ &nbsp; Check-in sekarang</button>
+              <p class="fine-print">Mockup ini menggunakan lokasi dan waktu simulasi. Tidak mengakses GPS perangkat fisik.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. HASIL KUNJUNGAN -->
+        <section class="page" id="page-results">
+          <div class="page-title">
+            <div>
+              <p class="eyebrow">PELAPORAN SALES</p>
+              <h1>Hasil Kunjungan</h1>
+              <p class="muted">Lengkapi laporan order, penagihan, dan catatan setelah bertemu outlet.</p>
+            </div>
+            <span class="pill pill-orange" id="resultState">Draft</span>
+          </div>
+
+          <div class="visit-summary">
+            <div class="outlet-initial">GS</div>
+            <div class="summary-meta">
+              <strong id="resultOutletName">Grosir Sentosa</strong>
+              <small>22 Okt 2026 · Kunjungan #VIS-0822 · Solo Raya</small>
+              <span class="pill pill-green">Check-in tercatat</span>
+            </div>
+          </div>
+
+          <form id="resultForm">
+            <div class="results-form-grid">
+              <div class="form-col-left">
+                <div class="form-section">
+                  <div class="form-section-title">
+                    <span>01</span>
+                    <div>
+                      <strong>Informasi kunjungan</strong>
+                      <small>Konfirmasi aktivitas outlet & PIC</small>
+                    </div>
+                  </div>
+                  
+                  <label class="field-label" for="visitType">Jenis kunjungan</label>
+                  <select id="visitType" required>
+                    <option>Penjualan rutin</option>
+                    <option>Penagihan</option>
+                    <option>Perkenalan produk baru</option>
+                    <option>Penanganan keluhan</option>
+                  </select>
+
+                  <label class="field-label" for="contactName">Nama PIC outlet</label>
+                  <input id="contactName" placeholder="Contoh: Bapak Andi (Pemilik)" required>
+
+                  <label class="field-label" for="visitOutcome">Hasil kunjungan</label>
+                  <select id="visitOutcome" required>
+                    <option value="">Pilih hasil kunjungan</option>
+                    <option>Order berhasil dibuat</option>
+                    <option>Follow-up diperlukan</option>
+                    <option>Outlet tutup</option>
+                    <option>Tidak ada order</option>
+                  </select>
+                </div>
+
+                <div class="form-section">
+                  <div class="form-section-title">
+                    <span>02</span>
+                    <div>
+                      <strong>Detail penjualan</strong>
+                      <small>Isi nominal order jika transaksi terjadi</small>
+                    </div>
+                  </div>
+                  
+                  <label class="field-label" for="orderValue">Nilai order (Rp)</label>
+                  <input id="orderValue" inputmode="numeric" placeholder="Contoh: 1.250.000">
+
+                  <label class="field-label" for="orderNumber">Nomor order (opsional)</label>
+                  <input id="orderNumber" placeholder="Contoh: SO-2026-0012">
+
+                  <div class="order-note">
+                    <span>ⓘ</span> Nilai penjualan akan masuk ke ringkasan performa harian secara simulasi.
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-col-right">
+                <div class="form-section">
+                  <div class="form-section-title">
+                    <span>03</span>
+                    <div>
+                      <strong>Catatan & tindak lanjut</strong>
+                      <small>Dokumentasikan kebutuhan outlet</small>
+                    </div>
+                  </div>
+
+                  <label class="field-label" for="notes">Catatan kunjungan</label>
+                  <textarea id="notes" rows="4" placeholder="Tuliskan hasil diskusi, kendala produk, atau rencana order berikutnya..."></textarea>
+
+                  <label class="field-label" for="followup">Tindak lanjut</label>
+                  <select id="followup">
+                    <option>Tidak ada</option>
+                    <option>Hubungi kembali</option>
+                    <option>Kirim katalog / promo</option>
+                    <option>Koordinasi dengan ASM</option>
+                    <option>Jadwalkan kunjungan ulang</option>
+                  </select>
+                </div>
+
+                <div class="form-section form-actions-box">
+                  <button class="primary-btn full" type="submit">✓ &nbsp; Simpan hasil kunjungan</button>
+                  <button class="secondary-btn full" type="button" id="saveDraft">Simpan sebagai draft</button>
+                </div>
+              </div>
+            </div>
+          </form>
+          <p class="fine-print">Semua data hanya tersimpan sementara di memori demo per sesi ini.</p>
+        </section>
+      </main>
+
+      <!-- Bottom Navigation (Mobile only) -->
+      <nav class="bottom-nav">
+        <button class="nav-item active" data-page="home">
+          <span>⌂</span>
+          <small>Home</small>
+        </button>
+        <button class="nav-item" data-page="schedule">
+          <span>▦</span>
+          <small>Jadwal</small>
+        </button>
+        <button class="nav-item center-nav" data-page="visit">
+          <span>⌖</span>
+          <small>Check-in</small>
+        </button>
+        <button class="nav-item" data-page="outlets">
+          <span>♙</span>
+          <small>Outlet</small>
+        </button>
+        <button class="nav-item" data-page="results">
+          <span>▤</span>
+          <small>Laporan</small>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Toast Notification -->
     <div class="toast" id="toast" role="status"></div>
   </div>
-  <script src="js/data.js"></script><script src="js/app.js"></script>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>

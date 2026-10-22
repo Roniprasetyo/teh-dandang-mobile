@@ -60,5 +60,17 @@
   $("#saveDraft").addEventListener("click",()=>{ $("#resultState").textContent="Draft tersimpan";toast("Draft laporan disimpan sementara."); });
   // Simulated role/date selectors and quick interactions
   $$(".date-item").forEach(b=>b.addEventListener("click",()=>{$$(".date-item").forEach(x=>x.classList.toggle("selected",x===b));toast("Jadwal "+b.querySelector("small").textContent+" "+b.querySelector("strong").textContent+" dipilih (demo).");}));
+  // Keyboard shortcut Ctrl+K / Cmd+K for quick outlet search
+  window.addEventListener("keydown", e => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+      e.preventDefault();
+      navigate("outlets");
+      setTimeout(() => {
+        const inp = $("#outletSearch");
+        if (inp) { inp.focus(); inp.select(); }
+      }, 50);
+    }
+  });
+
   scheduleHTML();outletHTML();setOutlet(currentOutlet);
 })();
