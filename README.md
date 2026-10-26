@@ -16,5 +16,4 @@ Mockup front-end mobile-first untuk alur Sales: Dashboard, Jadwal Kunjungan, Daf
 
 ## Batasan
 - Data, lokasi, waktu, dan status adalah dummy/simulasi.
-- Tidak menggunakan GPS perangkat, SAP, API, atau penyimpanan server.
-- Warna dan struktur visual terinspirasi dari referensi yang diberikan; aset/logo resmi belum disertakan.
+- Warna dan struktur visual terinspirasi dari identitas brand Teh Dandang; aset logo resmi `logodandang.png` telah diintegrasikan pada topbar, sidebar drawer, dan favicon.
